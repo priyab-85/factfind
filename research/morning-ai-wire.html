@@ -1,0 +1,525 @@
+<title>Morning AI Wire</title>
+<style>
+  :root {
+    --ground: #F4F6F8;
+    --surface: #FFFFFF;
+    --ink: #141C25;
+    --ink-soft: #4A5866;
+    --ink-faint: #7C8A98;
+    --rule: #D8DFE6;
+    --rule-soft: #E8EDF1;
+    --accent: #B0620A;
+    --link: #1B4B7A;
+    --c-model: #2E6E6B;
+    --c-fin: #1B4B7A;
+    --c-analyst: #6B3A6E;
+    --c-pod: #B0620A;
+    --shadow: 0 1px 2px rgba(20, 28, 37, .06), 0 8px 24px rgba(20, 28, 37, .04);
+
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #0E151C;
+      --surface: #151E27;
+      --ink: #E6EDF3;
+      --ink-soft: #9FB0BF;
+      --ink-faint: #6E8090;
+      --rule: #25323E;
+      --rule-soft: #1C2731;
+      --accent: #E5A245;
+      --link: #7FB6E8;
+      --c-model: #6FC0BB;
+      --c-fin: #7FB6E8;
+      --c-analyst: #C08FC4;
+      --c-pod: #E5A245;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .28);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #0E151C;
+    --surface: #151E27;
+    --ink: #E6EDF3;
+    --ink-soft: #9FB0BF;
+    --ink-faint: #6E8090;
+    --rule: #25323E;
+    --rule-soft: #1C2731;
+    --accent: #E5A245;
+    --link: #7FB6E8;
+    --c-model: #6FC0BB;
+    --c-fin: #7FB6E8;
+    --c-analyst: #C08FC4;
+    --c-pod: #E5A245;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .28);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    padding: clamp(1.5rem, 4vw, 3.5rem) clamp(1rem, 4vw, 2rem) 4rem;
+  }
+
+  .wrap {
+    max-width: 46rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2.75rem;
+  }
+
+  a { color: var(--link); }
+  a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* ---------- masthead ---------- */
+
+  .masthead {
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .masthead h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.1rem, 6vw, 3.1rem);
+    font-weight: 600;
+    letter-spacing: -.015em;
+    line-height: 1.02;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  .edition-line {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem 1.25rem;
+    font-family: var(--mono);
+    font-size: .74rem;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .edition-line .stamp { color: var(--accent); }
+
+  .standfirst {
+    font-family: var(--serif);
+    font-size: 1.08rem;
+    color: var(--ink-soft);
+    max-width: 34rem;
+    margin: 0;
+  }
+
+  /* ---------- glance strip ---------- */
+
+  .glance {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .glance div {
+    background: var(--surface);
+    padding: .85rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .15rem;
+  }
+
+  .glance .n {
+    font-family: var(--mono);
+    font-size: 1.5rem;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    color: var(--ink);
+  }
+
+  .glance .k {
+    font-family: var(--mono);
+    font-size: .67rem;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  /* ---------- sections ---------- */
+
+  section { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .sec-head {
+    display: flex;
+    align-items: baseline;
+    gap: .7rem;
+    padding-bottom: .5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .sec-head .dot {
+    width: .58rem;
+    height: .58rem;
+    border-radius: 1px;
+    flex: none;
+    transform: translateY(-1px);
+    background: var(--hue);
+  }
+
+  .sec-head h2 {
+    font-family: var(--mono);
+    font-size: .78rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0;
+    flex: 1;
+  }
+
+  .sec-head .count {
+    font-family: var(--mono);
+    font-size: .72rem;
+    color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .items { display: flex; flex-direction: column; gap: 1.4rem; }
+
+  .item {
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--hue);
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: .5rem .75rem;
+    font-family: var(--mono);
+    font-size: .7rem;
+    letter-spacing: .05em;
+    color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .meta time { color: var(--accent); text-transform: uppercase; }
+  .meta .src { overflow-wrap: anywhere; }
+
+  .flag {
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 0 .35rem;
+    color: var(--ink-faint);
+  }
+
+  .item h3 {
+    font-family: var(--serif);
+    font-size: 1.22rem;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -.005em;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  .item h3 a {
+    color: var(--ink);
+    text-decoration-color: var(--rule);
+    text-underline-offset: 3px;
+  }
+
+  .item h3 a:hover { color: var(--link); text-decoration-color: currentColor; }
+
+  .item p {
+    margin: 0;
+    font-size: .93rem;
+    color: var(--ink-soft);
+    max-width: 38rem;
+  }
+
+  /* ---------- archive ---------- */
+
+  #archive .empty {
+    font-family: var(--mono);
+    font-size: .8rem;
+    color: var(--ink-faint);
+    background: var(--surface);
+    border: 1px dashed var(--rule);
+    border-radius: 3px;
+    padding: 1.1rem 1.2rem;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  details.day {
+    border-bottom: 1px solid var(--rule-soft);
+    padding: .55rem 0;
+  }
+
+  details.day summary {
+    cursor: pointer;
+    font-family: var(--mono);
+    font-size: .78rem;
+    letter-spacing: .05em;
+    color: var(--ink-soft);
+    font-variant-numeric: tabular-nums;
+  }
+
+  details.day ul {
+    margin: .6rem 0 .3rem;
+    padding-left: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+    font-size: .86rem;
+  }
+
+  /* ---------- colophon ---------- */
+
+  .colophon {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 1.4rem 1.5rem;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: .85rem;
+  }
+
+  .colophon h2 {
+    font-family: var(--mono);
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0;
+  }
+
+  .colophon dl {
+    margin: 0;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: .5rem 1.1rem;
+    font-size: .87rem;
+  }
+
+  .colophon dt {
+    font-family: var(--mono);
+    font-size: .7rem;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding-top: .18rem;
+  }
+
+  .colophon dd { margin: 0; color: var(--ink-soft); }
+
+  @media (max-width: 30rem) {
+    .colophon dl { grid-template-columns: 1fr; gap: .15rem .5rem; }
+    .colophon dd { margin-bottom: .55rem; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="edition-line">
+      <span class="stamp">Edition 001</span>
+      <span>Saturday, 15 August 2026</span>
+      <span>07:00 ET</span>
+    </div>
+    <h1>Morning AI Wire</h1>
+    <p class="standfirst">Models and agents, applied AI in wealth management, analyst signal, and what's worth listening to — filed each morning, links only, nothing repeated twice.</p>
+  </header>
+
+  <div class="glance">
+    <div><span class="n">4</span><span class="k">Models &amp; agents</span></div>
+    <div><span class="n">4</span><span class="k">Financial services</span></div>
+    <div><span class="n">3</span><span class="k">Analyst signal</span></div>
+    <div><span class="n">3</span><span class="k">Listening</span></div>
+  </div>
+
+  <section style="--hue: var(--c-model)">
+    <div class="sec-head">
+      <span class="dot"></span>
+      <h2>Models &amp; agent releases</h2>
+      <span class="count">4 items</span>
+    </div>
+    <div class="items">
+
+      <article class="item">
+        <div class="meta"><time>Jul 28</time><span class="src">blog.modelcontextprotocol.io</span><span class="flag">Primary</span></div>
+        <h3><a href="https://blog.modelcontextprotocol.io/posts/2026-07-28/">MCP 2026-07-28 is final: the protocol went stateless</a></h3>
+        <p>The initialize/initialized handshake and <code>Mcp-Session-Id</code> are gone entirely, so servers scale on ordinary HTTP. Also lands the Extensions framework, Tasks for long-running work, MCP Apps for server-rendered UI, tighter OAuth/OIDC alignment, and a formal deprecation policy. If you wire agents into anything, this is the release that changes your integration assumptions.</p>
+      </article>
+
+      <article class="item">
+        <div class="meta"><time>Aug 2026</time><span class="src">infoq.com</span></div>
+        <h3><a href="https://www.infoq.com/news/2026/08/agent-framework-harness-ga/">Microsoft Agent Harness and Foundry Hosted Agents hit GA</a></h3>
+        <p>Out of preview, with GitHub Copilot and Claude Agent SDK connectors stable. Version 1.13.0 adds reusable session stores, expanded telemetry, and workflow replay with approvals — the approval-gate pattern is directly relevant if you are building human-in-the-loop review into an agent pipeline.</p>
+      </article>
+
+      <article class="item">
+        <div class="meta"><time>Aug 2026</time><span class="src">devblogs.microsoft.com</span><span class="flag">Primary</span></div>
+        <h3><a href="https://devblogs.microsoft.com/agent-framework/microsoft-agent-framework-at-build-2026-announce/">Agent Framework at Build 2026: harness, hosted agents, CodeAct</a></h3>
+        <p>Microsoft's own writeup of the same launch, with the orchestration patterns spelled out. Worth the read over the coverage if you want the architecture rather than the headline.</p>
+      </article>
+
+      <article class="item">
+        <div class="meta"><time>Aug 13–14</time><span class="src">llmgateway.io</span><span class="flag">Tracker</span></div>
+        <h3><a href="https://llmgateway.io/timeline">Gemini 3.7 Flash and Qwen3.8-27B land two days apart</a></h3>
+        <p>Ten models from six providers so far this month, including ByteDance Seed 2.1 Turbo (Aug 10) and Qwen3.8 Max (Aug 2). Linked to the release timeline rather than any one vendor post — treat it as the ledger, then go to the vendor for detail.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <section style="--hue: var(--c-fin)">
+    <div class="sec-head">
+      <span class="dot"></span>
+      <h2>Applied AI in financial services</h2>
+      <span class="count">4 items</span>
+    </div>
+    <div class="items">
+
+      <article class="item">
+        <div class="meta"><time>Aug 2</time><span class="src">agentic.ai</span><span class="flag">Regulatory</span></div>
+        <h3><a href="https://agentic.ai/news">EU AI Act high-risk provisions became enforceable</a></h3>
+        <p>Risk management, human oversight, and conformity assessment obligations are now live, alongside transparency rules requiring chatbots to identify themselves. Financial advice tooling sits close to the high-risk line, and "human oversight" is exactly the review-gate argument — the obligation now has teeth.</p>
+      </article>
+
+      <article class="item">
+        <div class="meta"><time>Aug 2026</time><span class="src">kitces.com</span></div>
+        <h3><a href="https://www.kitces.com/blog/the-latest-in-financial-advisortech-august-2026-ycharts-zephyr-hadrius-greenboard-feathery/">Robinhood Cortex for Advisors arrives free inside TradePMR Fusion</a></h3>
+        <p>Portfolio insight, tax-optimization surfacing, and meeting prep and recap — bundled at no extra cost to Fusion advisors. Meeting prep and recap being given away is the notable part: it prices a category that standalone tools charge for.</p>
+      </article>
+
+      <article class="item">
+        <div class="meta"><time>Aug 11</time><span class="src">fintech.global</span></div>
+        <h3><a href="https://fintech.global/2026/08/11/ai-wont-replace-wealth-advisors-it-will-redefine-them/">AI won't replace wealth advisors — it will redefine them</a></h3>
+        <p>Adoption is "middle-to-middle" rather than end-to-end: advisors are comfortable with note-taking and form completion, and stop well short of letting AI touch the record. A useful sanity check on where the market actually is.</p>
+      </article>
+
+      <article class="item">
+        <div class="meta"><time>Jul 29</time><span class="src">advisorperspectives.com</span></div>
+        <h3><a href="https://www.advisorperspectives.com/articles/2026/07/29/ais-promise-wealth-management-closing-advice-gap">LSEG: 73% of wealth and asset execs call AI critical to their future</a></h3>
+        <p>Framed around closing the advice gap rather than cutting cost. Good source for the "why now" slide if you ever need to justify this class of tooling internally.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <section style="--hue: var(--c-analyst)">
+    <div class="sec-head">
+      <span class="dot"></span>
+      <h2>Analyst signal</h2>
+      <span class="count">3 items</span>
+    </div>
+    <div class="items">
+
+      <article class="item">
+        <div class="meta"><time>2026</time><span class="src">gartner.com</span><span class="flag">Public page</span></div>
+        <h3><a href="https://www.gartner.com/en/articles/hype-cycle-for-agentic-ai">Gartner: fully autonomous agents aren't ready for most enterprise use cases</a></h3>
+        <p>The 2026 Agentic AI Hype Cycle finds most deployments remain narrowly scoped. The headline is unusually blunt for Gartner and is the single most citable line this month for scoping an agent project honestly.</p>
+      </article>
+
+      <article class="item">
+        <div class="meta"><time>2026</time><span class="src">gartner.com</span><span class="flag">Public page</span></div>
+        <h3><a href="https://www.gartner.com/en/articles/hype-cycle-for-genai">Hype Cycle for Generative AI, 2026</a></h3>
+        <p>The general-purpose companion to the agentic cycle, aimed at picking which innovations to actually pursue.</p>
+      </article>
+
+      <article class="item">
+        <div class="meta"><time>2026</time><span class="src">gartner.com</span><span class="flag">Paywalled</span></div>
+        <h3><a href="https://www.gartner.com/en/documents/8201329">Hype Cycle for AI Services, 2026</a></h3>
+        <p>Thesis from the public abstract: the services market is moving off GenAI experimentation toward operationalization, governance, and enterprise outcomes. Full document requires a Gartner seat.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <section style="--hue: var(--c-pod)">
+    <div class="sec-head">
+      <span class="dot"></span>
+      <h2>Worth listening to</h2>
+      <span class="count">3 items</span>
+    </div>
+    <div class="items">
+
+      <article class="item">
+        <div class="meta"><time>Aug 3</time><span class="src">latent.space</span><span class="flag">Show page</span></div>
+        <h3><a href="https://www.latent.space/podcast">Latent Space: inference engineering with Baseten, post-$13B round</a></h3>
+        <p>Philip Kiely and Ali Taha with Swyx and Vibhu on latency versus throughput, and how training and inference interact for open-model deployment. Direct episode URL wasn't confirmable this morning, so this points at the show index.</p>
+      </article>
+
+      <article class="item">
+        <div class="meta"><time>Aug 7</time><span class="src">dwarkesh.com</span><span class="flag">Archive</span></div>
+        <h3><a href="https://www.dwarkesh.com/podcast/archive">Dwarkesh: why AIs need accumulated experience, not session memory</a></h3>
+        <p>Built around a saxophone analogy — skill comes from accumulation across sessions, which current context windows structurally can't provide. Guest wasn't confirmable from the archive listing; linked to the archive so you can find the Aug 7 entry.</p>
+      </article>
+
+      <article class="item">
+        <div class="meta"><time>2026</time><span class="src">youtube.com</span></div>
+        <h3><a href="https://www.youtube.com/watch?v=LE90Yc5TuCs">Satya Nadella with Sarah Guo, Elad Gil and Swyx at Build 2026</a></h3>
+        <p>No Priors and Latent Space jointly on stage with Nadella. Video, so it works as background rather than commute listening.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="archive">
+    <div class="sec-head" style="--hue: var(--rule)">
+      <span class="dot"></span>
+      <h2>Archive — last 14 editions</h2>
+      <span class="count">0 prior</span>
+    </div>
+    <p class="empty">No prior editions yet — this is the first.<br>
+      From tomorrow, each morning's edition files here as a collapsed day with its links intact. The rolling 14-day window is what keeps a story from being reported to you twice.</p>
+  </section>
+
+  <footer class="colophon">
+    <h2>How this brief is made</h2>
+    <dl>
+      <dt>Filed</dt>
+      <dd>Every day at 07:00 US Eastern, into this same page. The URL never changes — pin it once.</dd>
+
+      <dt>Beat</dt>
+      <dd>Model and agent releases · applied AI in financial services · Gartner and analyst signal · podcasts and long-form.</dd>
+
+      <dt>No repeats</dt>
+      <dd>Each run reads the links already on this page before searching, and excludes anything from the last 14 editions.</dd>
+
+      <dt>Sourcing</dt>
+      <dd>Every item carries its date and domain. <span class="flag">Primary</span> is the vendor or author themselves; <span class="flag">Tracker</span> and <span class="flag">Archive</span> mean the direct link couldn't be confirmed and you're being sent to the index instead. Nothing is listed without a link that resolves.</dd>
+
+      <dt>Quiet days</dt>
+      <dd>A category with nothing genuinely new is dropped rather than padded. A short edition means a slow news day, not a failed run.</dd>
+    </dl>
+  </footer>
+
+</div>
