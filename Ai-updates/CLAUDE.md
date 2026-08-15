@@ -13,7 +13,7 @@ nothing to do with building it.
 
 **Artifact URL:** https://claude.ai/code/artifact/f8c8a99c-d561-4080-a87f-70052a4307ca
 
-**Source of truth:** `research/morning-ai-wire.html` in this directory.
+**Source of truth:** `Ai-updates/morning-ai-wire.html` in this directory.
 
 Two rules that matter more than anything else below:
 
@@ -30,7 +30,7 @@ Two rules that matter more than anything else below:
 ## Daily procedure
 
 1. `git pull origin claude/daily-ai-research-summary-2lhv0s` and read
-   `research/morning-ai-wire.html`.
+   `Ai-updates/morning-ai-wire.html`.
 2. Collect every URL already in that file — today's sections *and* the archive. That set
    is the exclusion list.
 3. Search the sources below for genuinely new items dated within roughly the last 7 days.
