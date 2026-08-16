@@ -349,8 +349,8 @@
 
   <header class="masthead">
     <div class="edition-line">
-      <span class="stamp">Edition 001</span>
-      <span>Saturday, 15 August 2026</span>
+      <span class="stamp">Edition 002</span>
+      <span>Sunday, 16 August 2026</span>
       <span>07:00 ET</span>
     </div>
     <h1>Morning AI Wire</h1>
@@ -358,9 +358,9 @@
   </header>
 
   <div class="glance">
-    <div><span class="n">4</span><span class="k">Models &amp; agents</span></div>
-    <div><span class="n">4</span><span class="k">Financial services</span></div>
-    <div><span class="n">3</span><span class="k">Analyst signal</span></div>
+    <div><span class="n">3</span><span class="k">Models &amp; agents</span></div>
+    <div><span class="n">2</span><span class="k">Financial services</span></div>
+    <div><span class="n">1</span><span class="k">Analyst signal</span></div>
     <div><span class="n">3</span><span class="k">Listening</span></div>
   </div>
 
@@ -368,32 +368,26 @@
     <div class="sec-head">
       <span class="dot"></span>
       <h2>Models &amp; agent releases</h2>
-      <span class="count">4 items</span>
+      <span class="count">3 items</span>
     </div>
     <div class="items">
 
       <article class="item">
-        <div class="meta"><time>Jul 28</time><span class="src">blog.modelcontextprotocol.io</span><span class="flag">Primary</span></div>
-        <h3><a href="https://blog.modelcontextprotocol.io/posts/2026-07-28/">MCP 2026-07-28 is final: the protocol went stateless</a></h3>
-        <p>The initialize/initialized handshake and <code>Mcp-Session-Id</code> are gone entirely, so servers scale on ordinary HTTP. Also lands the Extensions framework, Tasks for long-running work, MCP Apps for server-rendered UI, tighter OAuth/OIDC alignment, and a formal deprecation policy. If you wire agents into anything, this is the release that changes your integration assumptions.</p>
+        <div class="meta"><time>Aug 11</time><span class="src">anthropic.com</span><span class="flag">Primary</span></div>
+        <h3><a href="https://www.anthropic.com/news/claude-text-watermark">Claude output now carries an invisible watermark, with no way to turn it off</a></h3>
+        <p>Every model released after Aug 2 embeds a machine-readable mark in text, plus C2PA metadata in generated images, rolled out globally — not just to satisfy the EU AI Act's Article 50 — across the API, Claude Code, Cowork, and Claude Tag. If your team reviews AI-drafted client communications or filings, the provenance story around that content just changed, and there's no opt-out to plan around.</p>
       </article>
 
       <article class="item">
-        <div class="meta"><time>Aug 2026</time><span class="src">infoq.com</span></div>
-        <h3><a href="https://www.infoq.com/news/2026/08/agent-framework-harness-ga/">Microsoft Agent Harness and Foundry Hosted Agents hit GA</a></h3>
-        <p>Out of preview, with GitHub Copilot and Claude Agent SDK connectors stable. Version 1.13.0 adds reusable session stores, expanded telemetry, and workflow replay with approvals — the approval-gate pattern is directly relevant if you are building human-in-the-loop review into an agent pipeline.</p>
+        <div class="meta"><time>Aug 10</time><span class="src">openai.com</span><span class="flag">Primary</span></div>
+        <h3><a href="https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows/">OpenAI ships a purpose-built exploit-research model and splits cyber access into two tiers</a></h3>
+        <p>GPT-5.6-Cyber clears 95% of OpenAI's internal advanced-cyber eval, against 1.5% for the base model, and has already surfaced two real Chrome V8 zero-days. Daybreak Blue and Daybreak Red now gate access by vetting level. If your firm runs security or red-team functions, this is the offensive baseline you're defending against; skip if that's not your desk.</p>
       </article>
 
       <article class="item">
-        <div class="meta"><time>Aug 2026</time><span class="src">devblogs.microsoft.com</span><span class="flag">Primary</span></div>
-        <h3><a href="https://devblogs.microsoft.com/agent-framework/microsoft-agent-framework-at-build-2026-announce/">Agent Framework at Build 2026: harness, hosted agents, CodeAct</a></h3>
-        <p>Microsoft's own writeup of the same launch, with the orchestration patterns spelled out. Worth the read over the coverage if you want the architecture rather than the headline.</p>
-      </article>
-
-      <article class="item">
-        <div class="meta"><time>Aug 13–14</time><span class="src">llmgateway.io</span><span class="flag">Tracker</span></div>
-        <h3><a href="https://llmgateway.io/timeline">Gemini 3.7 Flash and Qwen3.8-27B land two days apart</a></h3>
-        <p>Ten models from six providers so far this month, including ByteDance Seed 2.1 Turbo (Aug 10) and Qwen3.8 Max (Aug 2). Linked to the release timeline rather than any one vendor post — treat it as the ledger, then go to the vendor for detail.</p>
+        <div class="meta"><time>Aug 7</time><span class="src">aws.amazon.com</span><span class="flag">Primary</span></div>
+        <h3><a href="https://aws.amazon.com/about-aws/whats-new/2026/08/agentcore-memory-policy-harness-govcloud/">Bedrock AgentCore brings plain-language policy control into GovCloud</a></h3>
+        <p>Agent tool-permissions can now be authored in natural language and auto-converted to Cedar policy, alongside session memory and a no-code managed harness, newly available in the regulated GovCloud region. It's a preview of how AWS expects agent governance to look in compliance-heavy deployments — relevant even if you're not on GovCloud yourself.</p>
       </article>
 
     </div>
@@ -403,32 +397,20 @@
     <div class="sec-head">
       <span class="dot"></span>
       <h2>Applied AI in financial services</h2>
-      <span class="count">4 items</span>
+      <span class="count">2 items</span>
     </div>
     <div class="items">
 
       <article class="item">
-        <div class="meta"><time>Aug 2</time><span class="src">agentic.ai</span><span class="flag">Regulatory</span></div>
-        <h3><a href="https://agentic.ai/news">EU AI Act high-risk provisions became enforceable</a></h3>
-        <p>Risk management, human oversight, and conformity assessment obligations are now live, alongside transparency rules requiring chatbots to identify themselves. Financial advice tooling sits close to the high-risk line, and "human oversight" is exactly the review-gate argument — the obligation now has teeth.</p>
+        <div class="meta"><time>Aug 11</time><span class="src">investmentnews.com</span></div>
+        <h3><a href="https://www.investmentnews.com/retirement-planning/nitrogen-launches-ai-tool-to-calculate-insurance-coverage-needs/267778">Nitrogen scores every client's insurance gap with a single number, no chat required</a></h3>
+        <p>Insurance Center runs on Nitrogen's existing Nucleus agent engine and debuted at LPL Focus alongside new MCP connectors and Slack/Teams access for the agent. A concrete example of agentic AI packaged as a narrow, explainable score rather than open-ended chat — the packaging pattern is worth studying even if you don't sell insurance-linked products.</p>
       </article>
 
       <article class="item">
-        <div class="meta"><time>Aug 2026</time><span class="src">kitces.com</span></div>
-        <h3><a href="https://www.kitces.com/blog/the-latest-in-financial-advisortech-august-2026-ycharts-zephyr-hadrius-greenboard-feathery/">Robinhood Cortex for Advisors arrives free inside TradePMR Fusion</a></h3>
-        <p>Portfolio insight, tax-optimization surfacing, and meeting prep and recap — bundled at no extra cost to Fusion advisors. Meeting prep and recap being given away is the notable part: it prices a category that standalone tools charge for.</p>
-      </article>
-
-      <article class="item">
-        <div class="meta"><time>Aug 11</time><span class="src">fintech.global</span></div>
-        <h3><a href="https://fintech.global/2026/08/11/ai-wont-replace-wealth-advisors-it-will-redefine-them/">AI won't replace wealth advisors — it will redefine them</a></h3>
-        <p>Adoption is "middle-to-middle" rather than end-to-end: advisors are comfortable with note-taking and form completion, and stop well short of letting AI touch the record. A useful sanity check on where the market actually is.</p>
-      </article>
-
-      <article class="item">
-        <div class="meta"><time>Jul 29</time><span class="src">advisorperspectives.com</span></div>
-        <h3><a href="https://www.advisorperspectives.com/articles/2026/07/29/ais-promise-wealth-management-closing-advice-gap">LSEG: 73% of wealth and asset execs call AI critical to their future</a></h3>
-        <p>Framed around closing the advice gap rather than cutting cost. Good source for the "why now" slide if you ever need to justify this class of tooling internally.</p>
+        <div class="meta"><time>Aug 13</time><span class="src">manilatimes.net</span><span class="flag">Primary</span></div>
+        <h3><a href="https://www.manilatimes.net/2026/08/13/tmt-newswire/globenewswire/playbook-launches-ai-orchestration-platform-for-wealth-management-firms/2405069">Powder rebrands as Playbook and expands from document automation into full workflow orchestration</a></h3>
+        <p>The relaunched platform claims roughly 40 firms and $660B in AUM already routing onboarding, compliance review, and tax-document workflows through it — those figures are self-reported in the release and not yet independently verified by trade press. Worth a skim to track positioning in the RIA orchestration space; treat the numbers with appropriate skepticism until they show up elsewhere.</p>
       </article>
 
     </div>
@@ -438,26 +420,14 @@
     <div class="sec-head">
       <span class="dot"></span>
       <h2>Analyst signal</h2>
-      <span class="count">3 items</span>
+      <span class="count">1 item</span>
     </div>
     <div class="items">
 
       <article class="item">
-        <div class="meta"><time>2026</time><span class="src">gartner.com</span><span class="flag">Public page</span></div>
-        <h3><a href="https://www.gartner.com/en/articles/hype-cycle-for-agentic-ai">Gartner: fully autonomous agents aren't ready for most enterprise use cases</a></h3>
-        <p>The 2026 Agentic AI Hype Cycle finds most deployments remain narrowly scoped. The headline is unusually blunt for Gartner and is the single most citable line this month for scoping an agent project honestly.</p>
-      </article>
-
-      <article class="item">
-        <div class="meta"><time>2026</time><span class="src">gartner.com</span><span class="flag">Public page</span></div>
-        <h3><a href="https://www.gartner.com/en/articles/hype-cycle-for-genai">Hype Cycle for Generative AI, 2026</a></h3>
-        <p>The general-purpose companion to the agentic cycle, aimed at picking which innovations to actually pursue.</p>
-      </article>
-
-      <article class="item">
-        <div class="meta"><time>2026</time><span class="src">gartner.com</span><span class="flag">Paywalled</span></div>
-        <h3><a href="https://www.gartner.com/en/documents/8201329">Hype Cycle for AI Services, 2026</a></h3>
-        <p>Thesis from the public abstract: the services market is moving off GenAI experimentation toward operationalization, governance, and enterprise outcomes. Full document requires a Gartner seat.</p>
+        <div class="meta"><time>Aug 6</time><span class="src">forrester.com</span><span class="flag">Public page</span></div>
+        <h3><a href="https://www.forrester.com/blogs/the-forrester-wave-ai-platforms-q3-2026-is-live-prepare-to-recalibrate/">Forrester says agentic AI has redrawn what counts as an AI platform</a></h3>
+        <p>The Q3 2026 Wave scores 15 vendors — AWS, Google, IBM, Microsoft, Oracle, Palantir, Salesforce, ServiceNow and others — on governance, runtime architecture, and agent development, not just model quality. Several Leaders are already embedded in bank tech stacks, so the governance and runtime-architecture criteria map fairly directly onto model-risk requirements. The full scorecard sits behind a Forrester login; this is the public summary.</p>
       </article>
 
     </div>
@@ -472,21 +442,21 @@
     <div class="items">
 
       <article class="item">
-        <div class="meta"><time>Aug 3</time><span class="src">latent.space</span><span class="flag">Show page</span></div>
-        <h3><a href="https://www.latent.space/podcast">Latent Space: inference engineering with Baseten, post-$13B round</a></h3>
-        <p>Philip Kiely and Ali Taha with Swyx and Vibhu on latency versus throughput, and how training and inference interact for open-model deployment. Direct episode URL wasn't confirmable this morning, so this points at the show index.</p>
+        <div class="meta"><time>Aug 11</time><span class="src">dwarkesh.com</span></div>
+        <h3><a href="https://www.dwarkesh.com/p/ryan-greenblatt">Redwood's chief scientist argues recursive self-improvement could arrive within a year of human-level AI</a></h3>
+        <p>Ryan Greenblatt walks through how AI automating AI research could compress years of progress into months, then spends the second half on recent agentic reward-hacking incidents and what they imply about oversight at scale. Dense and technical at 2h13m — good background listening if model-risk timelines are on your plate, skippable otherwise.</p>
       </article>
 
       <article class="item">
-        <div class="meta"><time>Aug 7</time><span class="src">dwarkesh.com</span><span class="flag">Archive</span></div>
-        <h3><a href="https://www.dwarkesh.com/podcast/archive">Dwarkesh: why AIs need accumulated experience, not session memory</a></h3>
-        <p>Built around a saxophone analogy — skill comes from accumulation across sessions, which current context windows structurally can't provide. Guest wasn't confirmable from the archive listing; linked to the archive so you can find the Aug 7 entry.</p>
+        <div class="meta"><time>Aug 10</time><span class="src">a16z.com</span></div>
+        <h3><a href="https://a16z.com/podcast/from-copilots-to-agents-rebuilding-the-company-around-ai/">Kavak runs 95% of its transactions, including loan underwriting, through AI agents</a></h3>
+        <p>Chief Product &amp; AI Officer Alejandro Maza Ayala describes rebuilding the used-car marketplace's org chart around agents rather than bolting copilots onto existing roles, with as much engineering effort going into evals as into the agents themselves. Directly relevant if you're weighing how far to trust agents with high-stakes, regulated-adjacent transactions like credit decisions — the eval-heavy approach is the transferable part.</p>
       </article>
 
       <article class="item">
-        <div class="meta"><time>2026</time><span class="src">youtube.com</span></div>
-        <h3><a href="https://www.youtube.com/watch?v=LE90Yc5TuCs">Satya Nadella with Sarah Guo, Elad Gil and Swyx at Build 2026</a></h3>
-        <p>No Priors and Latent Space jointly on stage with Nadella. Video, so it works as background rather than commute listening.</p>
+        <div class="meta"><time>Aug 10</time><span class="src">cognitiverevolution.ai</span></div>
+        <h3><a href="https://www.cognitiverevolution.ai/lindy-teammate-flo-crivello-on-multiplayer-agents-memory-why-he-d-ban-the-chinese-models-he-uses-newsletter/">Lindy's founder launches a persistent-memory AI teammate, then argues for banning the Chinese models his own product runs on</a></h3>
+        <p>Flo Crivello discusses Lindy Teammate's shared, cross-session memory inside Slack — the multiplayer-agent design pattern is the useful part for anyone building persistent context into enterprise tools. He also argues Chinese open-weight models, which Lindy currently runs on, should be banned in the US — a vendor-risk angle worth hearing even if you disagree with the conclusion.</p>
       </article>
 
     </div>
@@ -496,10 +466,28 @@
     <div class="sec-head" style="--hue: var(--rule)">
       <span class="dot"></span>
       <h2>Archive — last 14 editions</h2>
-      <span class="count">0 prior</span>
+      <span class="count">1 prior</span>
     </div>
-    <p class="empty">No prior editions yet — this is the first.<br>
-      From tomorrow, each morning's edition files here as a collapsed day with its links intact. The rolling 14-day window is what keeps a story from being reported to you twice.</p>
+
+    <details class="day">
+      <summary>Edition 001 — Sat, Aug 15 — 14 items</summary>
+      <ul>
+        <li><a href="https://blog.modelcontextprotocol.io/posts/2026-07-28/">MCP 2026-07-28 is final: the protocol went stateless</a></li>
+        <li><a href="https://www.infoq.com/news/2026/08/agent-framework-harness-ga/">Microsoft Agent Harness and Foundry Hosted Agents hit GA</a></li>
+        <li><a href="https://devblogs.microsoft.com/agent-framework/microsoft-agent-framework-at-build-2026-announce/">Agent Framework at Build 2026: harness, hosted agents, CodeAct</a></li>
+        <li><a href="https://llmgateway.io/timeline">Gemini 3.7 Flash and Qwen3.8-27B land two days apart</a></li>
+        <li><a href="https://agentic.ai/news">EU AI Act high-risk provisions became enforceable</a></li>
+        <li><a href="https://www.kitces.com/blog/the-latest-in-financial-advisortech-august-2026-ycharts-zephyr-hadrius-greenboard-feathery/">Robinhood Cortex for Advisors arrives free inside TradePMR Fusion</a></li>
+        <li><a href="https://fintech.global/2026/08/11/ai-wont-replace-wealth-advisors-it-will-redefine-them/">AI won't replace wealth advisors — it will redefine them</a></li>
+        <li><a href="https://www.advisorperspectives.com/articles/2026/07/29/ais-promise-wealth-management-closing-advice-gap">LSEG: 73% of wealth and asset execs call AI critical to their future</a></li>
+        <li><a href="https://www.gartner.com/en/articles/hype-cycle-for-agentic-ai">Gartner: fully autonomous agents aren't ready for most enterprise use cases</a></li>
+        <li><a href="https://www.gartner.com/en/articles/hype-cycle-for-genai">Hype Cycle for Generative AI, 2026</a></li>
+        <li><a href="https://www.gartner.com/en/documents/8201329">Hype Cycle for AI Services, 2026</a></li>
+        <li><a href="https://www.latent.space/podcast">Latent Space: inference engineering with Baseten, post-$13B round</a></li>
+        <li><a href="https://www.dwarkesh.com/podcast/archive">Dwarkesh: why AIs need accumulated experience, not session memory</a></li>
+        <li><a href="https://www.youtube.com/watch?v=LE90Yc5TuCs">Satya Nadella with Sarah Guo, Elad Gil and Swyx at Build 2026</a></li>
+      </ul>
+    </details>
   </section>
 
   <footer class="colophon">
